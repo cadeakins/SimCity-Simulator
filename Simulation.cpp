@@ -83,6 +83,27 @@ void Simulation::UpdateCity(Region& region, vector<Cell*> orderedCells) {  //Ite
     for (Cell* current : orderedCells) {
         switch (current->GetCellType()) {               //TODO Create happiness level conditions 
             case 'R':   //Residential case
+
+                if (current->GetHappinessLevel() < 20) {    //If happiness level is low enough, residents move out
+                    int currentPopulation = current->GetPopulation();
+                    current->SetPopulation(currentPopulation - 1);
+
+                    if (region.GetAvailableWorkers() != 0) {     //If there are available workers, -1 them. If not, remove a commercial population
+                        int currentWorkers = region.GetAvailableWorkers();
+                        region.SetAvailableWorkers(currentWorkers - 1);
+                
+                    } else {
+                        for (Cell* orderIterator : orderedCells) {  //Find a commercial Cell with population of atleast 1 and reduce by 1
+                            if (orderIterator->GetCellType() == 'C' && orderIterator->GetPopulation() > 0) {
+                                int currentCommercialPopulation = orderIterator->GetPopulation();
+                                orderIterator->SetPopulation(currentCommercialPopulation - 1);
+                                break;
+                            }
+                        }
+                    }
+                }
+
+
                 if (current->GetHappinessLevel() > 50) {    //If happiness level is less than 50, no new residents will move in
                     if (current->GetPopulation() == 0) {    //Pop = 0 case
                         adjCells = findAdjacentCells(region, current);

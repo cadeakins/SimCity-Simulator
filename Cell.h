@@ -18,7 +18,7 @@ class Cell {
         void SetCanGrow(bool canGrow);
         void SetRowIndex(int row);
         void SetColIndex(int col);
-        void SetHappinessLevel(int happinessLevel); //Setter and Getter for availableGoods
+        void SetHappinessLevel(int happinessLevel);
 
         Cell(); //Default constructor
         Cell(char cellType);    //Parameterized constructor 
