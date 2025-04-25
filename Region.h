@@ -18,9 +18,6 @@ class Region {
         void SetAvailableGoods(int availableGoods); //Setter and Getter for availableGoods
         int GetAvailableGoods();
 
-        void SetHappinessLevel(int happinessLevel); //Setter and Getter for availableGoods
-        int GetHappinessLevel();
-
         Region(); //Default constructor
         Region(vector<vector<Cell>> inputVector, int rows, int cols); //Parameterized constructor
 
@@ -35,7 +32,6 @@ class Region {
         int cols;
         int availableWorkers;
         int availableGoods;
-        int happinessLevel;
 };
 
 #endif

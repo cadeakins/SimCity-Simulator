@@ -71,7 +71,6 @@ void Simulation::SetNoChange(bool noChange) {
 
 
 void Simulation::UpdateCity(Region& region, vector<Cell*> orderedCells) {  //Iterates through each cell in Region and checks growth conditions, updates accordingly, returns true if change has NOT occured
-    //Go through
     vector<Cell*> adjCells;
     bool alreadyGrown;  //To have only growth of 1 every time step
     vector<UpdateQueue> updateQueue;        //Cell*   Population    Workers    Goods 
@@ -82,26 +81,27 @@ void Simulation::UpdateCity(Region& region, vector<Cell*> orderedCells) {  //Ite
 
 
     for (Cell* current : orderedCells) {
-        switch (current->GetCellType()) {
+        switch (current->GetCellType()) {               //TODO Create happiness level conditions 
             case 'R':   //Residential case
-                if (current->GetPopulation() == 0) {    //Pop = 0 case
-                    adjCells = findAdjacentCells(region, current);
+                if (current->GetHappinessLevel() > 50) {    //If happiness level is less than 50, no new residents will move in
+                    if (current->GetPopulation() == 0) {    //Pop = 0 case
+                        adjCells = findAdjacentCells(region, current);
 
 
-                    for (int i = 0; i < adjCells.size() && !alreadyGrown; i++) { //Iterate through adjacent cells, checks if already set to increase population in next time step
-                        if (adjCells[i]->GetCellType() == 'T' || adjCells[i]->GetCellType() == '#') {   //If there is a powerline next to 0 pop res, +1 pop
-                            updateQueue.push_back({current, 1, 1, 0});  //Workers & Pop += 1
-                            alreadyGrown = true;
-                            noChange = false;
-                        }
+                        for (int i = 0; i < adjCells.size() && !alreadyGrown; i++) { //Iterate through adjacent cells, checks if already set to increase population in next time step
+                            if (adjCells[i]->GetCellType() == 'T' || adjCells[i]->GetCellType() == '#') {   //If there is a powerline next to 0 pop res, +1 pop
+                                updateQueue.push_back({current, 1, 1, 0});  //Workers & Pop += 1
+                                alreadyGrown = true;
+                                noChange = false;
+                            }
 
-                        if (adjCells[i]->GetPopulation() >= 1) {
-                            updateQueue.push_back({current, 1, 1, 0}); //Workers & Pop += 1
-                            alreadyGrown = true;
-                            noChange = false;
+                            if (adjCells[i]->GetPopulation() >= 1) {
+                                updateQueue.push_back({current, 1, 1, 0}); //Workers & Pop += 1
+                                alreadyGrown = true;
+                                noChange = false;
+                            }
                         }
                     }
-                }
 
 
                 else if (current->GetPopulation() == 1) {   //Pop = 1 case
@@ -180,6 +180,7 @@ void Simulation::UpdateCity(Region& region, vector<Cell*> orderedCells) {  //Ite
 
 
                 }
+            }
             
                 break;
 

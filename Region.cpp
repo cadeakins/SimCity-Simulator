@@ -55,12 +55,3 @@ void Region::SetAvailableGoods(int availableGoods) {  //Setter and Getter for av
 int Region::GetAvailableGoods() {
     return availableGoods;
 }
-
-
-void Region::SetHappinessLevel(int happinessLevel) {
-    this->happinessLevel = happinessLevel;
-}
-
-int Region::GetHappinessLevel() {
-    return happinessLevel;
-}

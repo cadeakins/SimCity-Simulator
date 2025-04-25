@@ -9,6 +9,8 @@ class Cell {
         bool GetCanGrow();
         int GetRowIndex();
         int GetColIndex();
+        int GetHappinessLevel();
+        
 
         void SetCellType(char cellType);    //Setters for private variable members
         void SetPopulation(int population);
@@ -16,6 +18,7 @@ class Cell {
         void SetCanGrow(bool canGrow);
         void SetRowIndex(int row);
         void SetColIndex(int col);
+        void SetHappinessLevel(int happinessLevel); //Setter and Getter for availableGoods
 
         Cell(); //Default constructor
         Cell(char cellType);    //Parameterized constructor 
@@ -27,6 +30,7 @@ class Cell {
         bool canGrow;
         int rowIndex;
         int colIndex;
+        int happinessLevel;
 };
 
 #endif

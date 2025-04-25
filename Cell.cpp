@@ -32,6 +32,7 @@ Cell::Cell() {
     population = 0;
     pollution = 0;
     canGrow = false;
+    happinessLevel = 100;
 }
 
 Cell::Cell(char cellType) {
@@ -55,4 +56,13 @@ int Cell::GetRowIndex() {
 }
 int Cell::GetColIndex() {
     return colIndex;
+}
+
+
+void Cell::SetHappinessLevel(int happinessLevel) {
+    this->happinessLevel = happinessLevel;
+}
+
+int Cell::GetHappinessLevel() {
+    return happinessLevel;
 }
