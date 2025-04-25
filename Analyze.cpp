@@ -113,13 +113,16 @@ void RunAnalytics(Region& region) {
 Analytics AnalyzeArea(Region& region, Coords coords) {     //Returns information about a rectangular area
     Analytics areaData{0,0,0,0,0,0};
     vector<vector<Cell>> regVec = region.GetRegion();
-
+    int totalHappiness = 0;
+    int numResidentialCells = 0;
 
     for (int i = coords.topLeft.row; i < coords.botLeft.row; i++) {
         for (int j = coords.topLeft.col; j < coords.topRight.col; j++) {
             if (regVec[i][j].GetCellType() == 'R') {    //Residential cell located
                 areaData.residentialPopulation += regVec[i][j].GetPopulation();
-                areaData.residentialPollution += regVec[i][j].GetPollution(); 
+                areaData.residentialPollution += regVec[i][j].GetPollution();
+                totalHappiness += regVec[i][j].GetHappinessLevel(); 
+                numResidentialCells += 1;
             }
 
             else if (regVec[i][j].GetCellType() == 'C') {   //Commercial cell located
@@ -133,6 +136,8 @@ Analytics AnalyzeArea(Region& region, Coords coords) {     //Returns information
             }
         }
     }
+    areaData.residentialHappiness = (totalHappiness / numResidentialCells); //Calculates average happiness 
+    cout << areaData.residentialHappiness;
     //Return Analytics 
     return areaData;
 }

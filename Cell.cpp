@@ -32,6 +32,8 @@ Cell::Cell() {
     population = 0;
     pollution = 0;
     canGrow = false;
+    rowIndex = -1;
+    colIndex = -1;
     happinessLevel = 100;
 }
 
@@ -40,6 +42,9 @@ Cell::Cell(char cellType) {
     population = 0;
     pollution = 0;
     canGrow = false;
+    rowIndex = -1;
+    colIndex = -1;
+    happinessLevel = 100;
 }
 
 

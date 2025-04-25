@@ -83,8 +83,7 @@ void Simulation::UpdateCity(Region& region, vector<Cell*> orderedCells) {  //Ite
     for (Cell* current : orderedCells) {
         switch (current->GetCellType()) {               //TODO Create happiness level conditions 
             case 'R':   //Residential case
-
-                if (current->GetHappinessLevel() < 20) {    //If happiness level is low enough, residents move out
+                if (current->GetHappinessLevel() < 20 && current->GetPopulation() == 0) {    //If happiness level is low enough, residents move out
                     int currentPopulation = current->GetPopulation();
                     current->SetPopulation(currentPopulation - 1);
 

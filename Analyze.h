@@ -12,6 +12,9 @@ struct Analytics { //For keeping track of data in an area
     int residentialPollution;
     int commercialPollution;
     int industrialPollution;
+
+    int residentialHappiness;
+    int numOfResidential;
 };
 
 struct Point {
