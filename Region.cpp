@@ -57,3 +57,10 @@ int Region::GetAvailableGoods() {
 }
 
 
+void Region::SetHappinessLevel(int happinessLevel) {
+    this->happinessLevel = happinessLevel;
+}
+
+int Region::GetHappinessLevel() {
+    return happinessLevel;
+}

@@ -38,10 +38,6 @@ void Simulation::RunSimulation(Region& region, Config& config) { //Handles the s
 
         UpdateCity(region, formattedCells); ////Growth checker and updater
     }
-    //Output region, show available workers, available goods
-    //Check growth states
-
-    //Wait refreshRate time, then loop again
 }
 
 
