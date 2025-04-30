@@ -33,7 +33,9 @@ void RunAnalytics(Region& region) {
         cout << "Enter Choice: ";
         cin >> choice;
 
-        while (choice > 2 || choice <= 0) { //Check if choice is valid
+        while (cin.fail() || choice > 2 || choice <= 0) { //Check if choice is valid
+            cin.clear();
+            cin.ignore(10000, '\n');    //If user accidentally enters character, this avoids an infinite loop bug
             cout << "Invalid option. Please choose either 1 or 2" << endl;
             cout << "Enter Choice: ";
             cin >> choice;
@@ -89,6 +91,7 @@ void RunAnalytics(Region& region) {
                 cout << "Residential:\t" << regionData.residentialPopulation << "\t\t\t\t" << regionData.residentialPollution << endl;
                 cout << "Industrial:\t" << regionData.industrialPopulation << "\t\t\t\t" << regionData.industrialPollution << endl;
                 cout << "Commercial:\t" << regionData.commercialPopulation << "\t\t\t\t" << regionData.commercialPollution << endl;
+                cout << "\t\t\tAverage Happiness: " << regionData.residentialHappiness << endl;
                 break;
             }
 
@@ -137,7 +140,6 @@ Analytics AnalyzeArea(Region& region, Coords coords) {     //Returns information
         }
     }
     areaData.residentialHappiness = (totalHappiness / numResidentialCells); //Calculates average happiness 
-    cout << areaData.residentialHappiness;
     //Return Analytics 
     return areaData;
 }
