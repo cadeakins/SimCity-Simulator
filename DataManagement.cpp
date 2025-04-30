@@ -60,6 +60,22 @@ Config OpenConfig() {   //Function to open a given config.txt file and convert i
 
 
     myFile.close();
+    
+    //Intake wind direction
+    int windDirection = 0;
+    cout << endl;
+    cout << "What direction should the wind blow?" << endl;
+    cout << "1. North\t\t 2. East\t\t 3. South\t\t 4. West" << endl;
+    cout << "Enter 1-4: ";
+    cin >> windDirection;
+
+    while (cin.fail() || windDirection > 4 || windDirection <= 0) { //Check if choice is valid
+        cin.clear();
+        cin.ignore(10000, '\n');    //If user accidentally enters character, this avoids an infinite loop bug
+        cout << "Invalid option. Please choose an option 1-4" << endl;
+        cout << "Enter 1-4: ";
+        cin >> windDirection;
+    }
 
     return inputConfig;
 }
