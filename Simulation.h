@@ -24,7 +24,8 @@ class Simulation {
         void RunSimulation(Region& region, Config& config);   //Continuously runs until time limit reached or nothing has changed in two time steps
         void UpdateCity(Region& region, vector<Cell*> orderedCells);  //Iterates through each cell in Region and checks growth conditions, updates accordingly, returns true if change has NOT occured
         void SpreadPollution(Region& region, Cell* current); //Spreads pollution to neighbor cells
-        vector<Cell*> findAdjacentCells(Region& region, Cell* centerCell); //Returns all adjacent Cells in a vector of cell pointers  
+        vector<Cell*> findAdjacentCells(Region& region, Cell* centerCell); //Returns all adjacent Cells in a vector of cell pointers
+        void SimulateWind(Region& region, Config& config);  //Simulates pollution being blown by wind  
 
     private: 
         int currentTimeStep;

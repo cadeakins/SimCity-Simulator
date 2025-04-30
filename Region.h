@@ -22,6 +22,7 @@ class Region {
         Region(vector<vector<Cell>> inputVector, int rows, int cols); //Parameterized constructor
 
         void PrintRegion(); //Outputs region
+        void PrintPollution(); //Outputs pollution in region
 
 
         

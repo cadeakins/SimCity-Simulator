@@ -20,23 +20,23 @@ void RunAnalytics(Region& region) {
     cout << "Residential:\t" << wholeRegion.residentialPopulation << "\t\t\t\t" << wholeRegion.residentialPollution << endl;
     cout << "Industrial:\t" << wholeRegion.industrialPopulation << "\t\t\t\t" << wholeRegion.industrialPollution << endl;
     cout << "Commercial:\t" << wholeRegion.commercialPopulation << "\t\t\t\t" << wholeRegion.commercialPollution << endl;
-
+    cout << "\t\t\tAverage Happiness: " << wholeRegion.residentialHappiness << endl;
 
     cout << "---------------------------------------------------------------------------------" << endl;
     
     
 
     int choice = 0;
-    while (choice != 2) {
+    while (choice != 3) {
         cout << "\t\t     Analyze Menu " << endl;
-        cout << "1. Analyze Rectangular Area\t\t 2. Quit" << endl;
+        cout << "1. Analyze Rectangular Area\t2. Print Pollution Map\t 3. Quit" << endl;
         cout << "Enter Choice: ";
         cin >> choice;
 
-        while (cin.fail() || choice > 2 || choice <= 0) { //Check if choice is valid
+        while (cin.fail() || choice > 3 || choice <= 0) { //Check if choice is valid
             cin.clear();
             cin.ignore(10000, '\n');    //If user accidentally enters character, this avoids an infinite loop bug
-            cout << "Invalid option. Please choose either 1 or 2" << endl;
+            cout << "Invalid option. Please choose 1-3" << endl;
             cout << "Enter Choice: ";
             cin >> choice;
         }
@@ -91,11 +91,15 @@ void RunAnalytics(Region& region) {
                 cout << "Residential:\t" << regionData.residentialPopulation << "\t\t\t\t" << regionData.residentialPollution << endl;
                 cout << "Industrial:\t" << regionData.industrialPopulation << "\t\t\t\t" << regionData.industrialPollution << endl;
                 cout << "Commercial:\t" << regionData.commercialPopulation << "\t\t\t\t" << regionData.commercialPollution << endl;
-                cout << "\t\t\tAverage Happiness: " << regionData.residentialHappiness << endl;
+                cout << "\t\t\tAverage Happiness: " << regionData.residentialHappiness << endl; //TODO
                 break;
             }
 
-            case 2: 
+            case 2:     //Pollution Map TODO
+                region.PrintPollution();
+                break;
+
+            case 3: //Quit
                 cout << "Thank you for playing!" << endl;
                 break;
         };

@@ -37,6 +37,7 @@ void Simulation::RunSimulation(Region& region, Config& config) { //Handles the s
 
 
         UpdateCity(region, formattedCells); ////Growth checker and updater
+        SimulateWind(region, config);
     }
 }
 
@@ -83,7 +84,7 @@ void Simulation::UpdateCity(Region& region, vector<Cell*> orderedCells) {  //Ite
     for (Cell* current : orderedCells) {
         switch (current->GetCellType()) {               //TODO Create happiness level conditions 
             case 'R':   //Residential case
-                if (current->GetHappinessLevel() < 20 && current->GetPopulation() == 0) {    //If happiness level is low enough, residents move out
+                if (current->GetHappinessLevel() < 20 && current->GetPopulation() != 0) {    //If happiness level is low enough, residents move out
                     int currentPopulation = current->GetPopulation();
                     current->SetPopulation(currentPopulation - 1);
 
@@ -442,4 +443,44 @@ vector<Cell*> Simulation::findAdjacentCells(Region& region, Cell* centerCell) { 
     }
 
     return adjCells;
+}
+
+
+
+void Simulation::SimulateWind(Region& region, Config& config) {
+    vector<vector<Cell>>& regVec = region.GetRegion(); //Passes region 2D vector by reference
+
+    for (int i = 0; i < region.GetRows(); i++) {        //Iterates through whole region
+        for (int j = 0; j <  region.GetCols(); j++) {
+            if (regVec[i][j].GetPollution() >= 2) {     //Only spread wind if pollution is greater than or equal to 2
+                int currentPollution = regVec[i][j].GetPollution(); //For updating pollution level
+                switch (config.GetWindDirection()) {
+                    case 1: //North Wind
+                        if (i != 0) {     //Check if update would be in bounds
+                            regVec[i-1][j].SetPollution(currentPollution + 1);
+                        }
+                    break;
+
+                    case 2: //East Wind
+                        if (j != (region.GetCols() - 1)) {
+                            regVec[i][j+1].SetPollution(currentPollution + 1);
+                        }
+                    break;
+
+                    case 3: //South Wind
+                        if (i != region.GetRows() - 1) {
+                            regVec[i+1][j].SetPollution(currentPollution + 1);
+                        }
+                    break;
+
+                    case 4: //West Wind
+                        if (j != 0) {
+                            regVec[i][j-1].SetPollution(currentPollution + 1);
+                        }
+
+                    break;
+                }
+            }
+        }
+    }
 }

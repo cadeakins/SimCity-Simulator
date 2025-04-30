@@ -32,6 +32,23 @@ void Region::PrintRegion() { //Outputs region
     cout << "---------------------------------------------------------------------------------" << endl;
 }
 
+
+void Region::PrintPollution() { //Outputs pollution in region
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (region[i][j].GetPollution() == 0) {
+                cout << region[i][j].GetCellType() << "  ";
+            }
+            else {
+                cout << region[i][j].GetPollution() << "  ";
+            }
+        } 
+        cout << endl;  
+    }
+    cout << "---------------------------------------------------------------------------------" << endl;
+}
+
+
 int Region::GetCols() {
     return cols;
 }
