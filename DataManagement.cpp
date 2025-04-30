@@ -77,6 +77,8 @@ Config OpenConfig() {   //Function to open a given config.txt file and convert i
         cin >> windDirection;
     }
 
+    inputConfig.SetWindDirection(windDirection);
+
     return inputConfig;
 }
 
