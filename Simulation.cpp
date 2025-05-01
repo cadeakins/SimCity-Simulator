@@ -83,11 +83,21 @@ void Simulation::UpdateCity(Region& region, vector<Cell*> orderedCells) {  //Ite
 
     for (Cell* current : orderedCells) {
         switch (current->GetCellType()) {               //TODO Create happiness level conditions 
-            case 'R':   //Residential case
+            case 'R': {   //Residential case
+            //alreadyGrown = false;
+
+                //Update Happiness
+                if (current->GetHappinessLevel() > 10) {
+                    int currentHappiness = ((current->GetPollution() * -20) + 100);
+                    current->SetHappinessLevel(currentHappiness);
+                } else if (current->GetPollution() > 5) {
+                    current->SetHappinessLevel(0);
+                }
+
                 if (current->GetHappinessLevel() < 20 && current->GetPopulation() != 0) {    //If happiness level is low enough, residents move out
                     int currentPopulation = current->GetPopulation();
                     current->SetPopulation(currentPopulation - 1);
-
+                
                     if (region.GetAvailableWorkers() != 0) {     //If there are available workers, -1 them. If not, remove a commercial population
                         int currentWorkers = region.GetAvailableWorkers();
                         region.SetAvailableWorkers(currentWorkers - 1);
@@ -123,6 +133,7 @@ void Simulation::UpdateCity(Region& region, vector<Cell*> orderedCells) {  //Ite
                             }
                         }
                     }
+                
 
 
                 else if (current->GetPopulation() == 1) {   //Pop = 1 case
@@ -202,9 +213,10 @@ void Simulation::UpdateCity(Region& region, vector<Cell*> orderedCells) {  //Ite
 
                 }
             }
+        
             
-                break;
-
+            break;
+        }
 
 
 

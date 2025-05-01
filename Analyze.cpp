@@ -27,16 +27,16 @@ void RunAnalytics(Region& region) {
     
 
     int choice = 0;
-    while (choice != 3) {
+    while (choice != 4) {
         cout << "\t\t     Analyze Menu " << endl;
-        cout << "1. Analyze Rectangular Area\t2. Print Pollution Map\t 3. Quit" << endl;
+        cout << "1. Analyze Rectangular Area\t2. Print Pollution Map\t 3. Print Happiness\t4. Quit" << endl;
         cout << "Enter Choice: ";
         cin >> choice;
 
-        while (cin.fail() || choice > 3 || choice <= 0) { //Check if choice is valid
+        while (cin.fail() || choice > 4 || choice <= 0) { //Check if choice is valid
             cin.clear();
             cin.ignore(10000, '\n');    //If user accidentally enters character, this avoids an infinite loop bug
-            cout << "Invalid option. Please choose 1-3" << endl;
+            cout << "Invalid option. Please choose 1-4" << endl;
             cout << "Enter Choice: ";
             cin >> choice;
         }
@@ -99,7 +99,11 @@ void RunAnalytics(Region& region) {
                 region.PrintPollution();
                 break;
 
-            case 3: //Quit
+            case 3:     //Happiness Map
+                region.PrintHappiness();
+                break;
+
+            case 4: //Quit
                 cout << "Thank you for playing!" << endl;
                 break;
         };

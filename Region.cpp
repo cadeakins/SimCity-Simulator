@@ -49,6 +49,23 @@ void Region::PrintPollution() { //Outputs pollution in region
 }
 
 
+void Region::PrintHappiness() { //Outputs pollution in region
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            if (region[i][j].GetCellType() == 'R') {
+                cout << region[i][j].GetHappinessLevel() << "  ";
+            }
+            else {
+                cout << region[i][j].GetCellType() << "  ";
+            }
+        } 
+        cout << endl;  
+    }
+    cout << "---------------------------------------------------------------------------------" << endl;
+}
+
+
+
 int Region::GetCols() {
     return cols;
 }

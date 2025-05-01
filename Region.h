@@ -23,6 +23,7 @@ class Region {
 
         void PrintRegion(); //Outputs region
         void PrintPollution(); //Outputs pollution in region
+        void PrintHappiness();  //For testing, outputs happiness 
 
 
         
